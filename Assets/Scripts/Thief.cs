@@ -8,7 +8,6 @@ public class Thief : MonoBehaviour
     private TargetMover _targetMover;
     private int _money = 0;
 
-
     private void Start()
     {
         _targetMover = GetComponent<TargetMover>();

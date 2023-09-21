@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: f6865589f775f2a4b968b7de1cdfe3cc, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17999572, g: 0.22536755, b: 0.30674046, a: 1}
+  m_IndirectSpecularColor: {r: 0.17892618, g: 0.28680047, b: 0.4375975, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1452,8 +1452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37adb219f64edb249a6fca3ff16ec6b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _safeHaven: {fileID: 0}
-  SpeedTheft: 10
+  _safeHaven: {fileID: 110685713}
+  _speedTheft: 1
 --- !u!4 &448544851 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1992127741327743772, guid: 2cb74f8103cb0ce49b58f953f665431f, type: 3}
@@ -3527,7 +3527,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &2066661373
