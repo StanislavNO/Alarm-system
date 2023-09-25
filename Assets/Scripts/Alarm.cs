@@ -1,16 +1,14 @@
 ﻿using System.Collections;
-using System.IO;
 using UnityEngine;
-using UnityEngine.Events;
-
 
 public class Alarm : MonoBehaviour
 {
     [SerializeField] private float _speedSoundChange;
-    [SerializeField]private Animator[] _blocks;
+    [SerializeField] private Animator[] _blocks;
 
-    private string _animationTrigerInBlock = "Alarm";
     private AudioSource _sound;
+    private string _animationTrigerInBlock = "Alarm";
+
     private float _maxVolume = 1.0f;
     private float _minVolume = 0.0f;
 
