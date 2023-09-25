@@ -21,25 +21,21 @@ public class Alarm : MonoBehaviour
 
     public void OnSignal()
     {
-        float finishVolume = _maxVolume;
-
         _sound.enabled = true;
         _sound.Play();
 
         OnTrigerBlock();
 
         StopAllCoroutines();
-        StartCoroutine(ChangeVolume(finishVolume));
+        StartCoroutine(ChangeVolume(_maxVolume));
     }
 
     public void OffSignal()
     {
-        float finishVolume = _minVolume;
-
         OnTrigerBlock();
 
         StopAllCoroutines();
-        StartCoroutine(ChangeVolume(finishVolume));
+        StartCoroutine(ChangeVolume(_minVolume));
     }
 
     private void OnTrigerBlock()
