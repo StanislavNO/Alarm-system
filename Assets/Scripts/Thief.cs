@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(TargetMover))] 
 public class Thief : MonoBehaviour
 {
     [SerializeField] private SafeHaven _safeHaven;
-    [SerializeField] private float _speedTheft;
+    [SerializeField] private float _speedTheftSecond;
+    [SerializeField] private int _money;
 
     private TargetMover _targetMover;
-    private int _money = 0;
 
     private void Start()
     {
         _targetMover = GetComponent<TargetMover>();
     }
 
-    public float ShowSpeedTheft() => _speedTheft;
+    public float ShowSpeedTheft() => _speedTheftSecond;
 
     public void SetMoney(int coin)
     {

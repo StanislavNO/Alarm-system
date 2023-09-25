@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class Alarm : MonoBehaviour
 {
     [SerializeField] private float _speedSoundChange;
-    [SerializeField] private List<Animator> _houseBlock;
+    [SerializeField]private Animator[] _blocks;
 
-    private bool _isWork;
+    private string _animationTrigerInBlock = "Alarm";
     private AudioSource _sound;
     private float _maxVolume = 1.0f;
     private float _minVolume = 0.0f;
@@ -19,29 +21,34 @@ public class Alarm : MonoBehaviour
         _sound.volume = 0;
     }
 
-    private void OnTriggerEnter(Collider collider)
+    public void OnSignal()
     {
-        _isWork = true;
+        float finishVolume = _maxVolume;
 
-        if (collider.GetComponent<Thief>())
-        {
-            _sound.enabled = true;
-            _sound.Play();
+        _sound.enabled = true;
+        _sound.Play();
 
-            ChangedAnimationHouse(_isWork);
-            StopAllCoroutines();
-            StartCoroutine(ChangeVolume(_maxVolume));
-        }
+        OnTrigerBlock();
+
+        StopAllCoroutines();
+        StartCoroutine(ChangeVolume(finishVolume));
     }
 
-    private void OnTriggerExit(Collider collider)
+    public void OffSignal()
     {
-        _isWork  = false;
+        float finishVolume = _minVolume;
 
-        if (collider.GetComponent<Thief>())
+        OnTrigerBlock();
+
+        StopAllCoroutines();
+        StartCoroutine(ChangeVolume(finishVolume));
+    }
+
+    private void OnTrigerBlock()
+    {
+        foreach (var block in _blocks)
         {
-            StopAllCoroutines();
-            StartCoroutine(ChangeVolume(_minVolume));
+            block.SetTrigger(_animationTrigerInBlock);
         }
     }
 
@@ -50,8 +57,8 @@ public class Alarm : MonoBehaviour
         while (_sound.volume != endValue)
         {
             _sound.volume = Mathf.MoveTowards(
-                _sound.volume, 
-                endValue, 
+                _sound.volume,
+                endValue,
                 _speedSoundChange * Time.deltaTime);
 
             yield return null;
@@ -60,15 +67,6 @@ public class Alarm : MonoBehaviour
         if (_sound.volume == _minVolume)
         {
             _sound.enabled = false;
-            ChangedAnimationHouse(_isWork);
-        }
-    }
-
-    private void ChangedAnimationHouse(bool isWork)
-    {
-        for (int i = 0; i < _houseBlock.Count; i++)
-        {
-            _houseBlock[i].GetComponent<Animator>().enabled = isWork;
         }
     }
 }

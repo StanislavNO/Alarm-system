@@ -1,12 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class House : MonoBehaviour
 {
-    private void Start()
+    [SerializeField] private UnityEvent _entered;
+    [SerializeField] private UnityEvent _leave;
+
+    private void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < transform.childCount; i++)
+        if (other.GetComponent<Thief>())
         {
-            transform.GetChild(i).GetComponent<Animator>().enabled = false;
+            _entered.Invoke();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Thief>())
+        {
+            _leave.Invoke();
         }
     }
 }

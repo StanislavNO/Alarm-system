@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Money : MonoBehaviour
 {
-    [SerializeField] private int _money;
+    [SerializeField] private int _coins;
 
     private int _coin = 1;
 
@@ -17,15 +17,15 @@ public class Money : MonoBehaviour
 
     private int GetMoney()
     {
-        if (_money > 0)
+        if (_coins > 0)
         {
-            _money--;
+            _coins--;
 
             return _coin;
         }
         else
         {
-            return _money;
+            return _coins;
         }
     }
 
@@ -40,7 +40,7 @@ public class Money : MonoBehaviour
 
             yield return delay;
         }
-        while (_money > 0);
+        while (_coins > 0);
 
         thief.SetMoney(GetMoney());
     }
